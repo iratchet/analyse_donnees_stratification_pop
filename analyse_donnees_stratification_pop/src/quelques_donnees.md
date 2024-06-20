@@ -94,23 +94,19 @@ display(svg.node());
 
 ```js
 const taille_echantillon = view(Inputs.range([0, taille], {step: 1, label: "Taille de l'échantillon", placeholder: "1000"}));
-```
 
-```js
 // Dimensions du rectangle
 const width = 500;
 const height = 300;
 let data_select = [];
-if (taille_echantillon > 0 && taille_echantillon <= data.length) {
-   // Générez n indices aléatoires uniques
-  const indicesAleatoires = new Set();
-  while (indicesAleatoires.size < taille_echantillon) {
-    const randomIndex = Math.floor(Math.random() * data.length);
-    indicesAleatoires.add(randomIndex);
-  }
-  data_select = Array.from(indicesAleatoires).map(index => data[index]);
-
+for (let i = 0; i < taille_echantillon ) {
+    const tirage = Math.floor(Math.random() * data.length);
+    data_select.push(data[tirage]);
 }
+function display(selection) {
+    console.log("Échantillon sélectionné :", selection);
+display (data_select)
+
 const blueElements = data_select.filter(item => item.color === 'blue').length;
 const proportionBlue = (blueElements / taille_echantillon) * 100;
 
@@ -145,3 +141,15 @@ Le tirage de **${taille_echantillon}** individus dans la population totale a cho
 
   </div>
 </dv>
+
+<div class="grid grid-cols-1">
+  <div class = "card">
+
+```js
+const rep = view(
+  Inputs.text({
+    label: "Quelle est la population d'étude ?",
+    placeholder: "Entrer la population d'étude",
+    width: 600
+  })
+);
